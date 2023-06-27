@@ -29,7 +29,17 @@ function Menu() {
 }
 
 function Footer() {
-  return <footer>{new Date().toLocaleTimeString()}. Lagi buka nih.</footer>;
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+
+  if (hour < openHour || hour > closeHour) {
+    alert("Maaf kita tutup");
+  } else {
+    alert("Yes kita buka");
+  }
+
+  return <footer>{new Date().toLocaleTimeString()}. Warteg Mang Udin.</footer>;
 }
 
 function Food() {
