@@ -43,9 +43,20 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Menu kita</h2>
-      <Food></Food>
-      <Food />
-      <Food />
+      <Food
+        nama="Nasi Goreng"
+        deskripsi="Nasi yang digoreng dengan bumbu rempah khas Indonesia"
+        harga={25000}
+        foto="food/nasi-goreng.jpg"
+        stok={Math.random() >= 0.5 ? true : false}
+      />
+      <Food
+        nama="Sate Ayam"
+        deskripsi="Potongan daging ayam yang ditusuk dan dibakar, disajikan dengan bumbu kacang"
+        harga={15000}
+        foto="food/sate-ayam.jpg"
+        stok={Math.random() >= 0.5 ? true : false}
+      />
     </main>
   );
 }
@@ -68,12 +79,16 @@ function Footer() {
   );
 }
 
-function Food() {
+function Food(props) {
+  console.log(props);
   return (
-    <div>
-      <img src="food/nasi-goreng.jpg" alt="" width={200} height={140} />
-      <h3>Nasi Goreng Mang Udin</h3>
-      <p>Ini adalah nasi goreng</p>
+    <div className="food">
+      <img src={props.foto} alt={props.nama} width={200} height={140} />
+      <div>
+        <h3>{props.nama}</h3>
+        <p>{props.deskripsi}</p>
+        <span>Rp{props.harga}</span>
+      </div>
     </div>
   );
 }
