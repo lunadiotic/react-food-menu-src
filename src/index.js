@@ -41,14 +41,19 @@ function Header() {
 }
 
 function Menu() {
+  // const foods = data;
+  const foods = [];
+  const numFoods = foods.length;
   return (
     <main className="menu">
       <h2>Menu kita</h2>
-      <ul className="foods">
-        {data.map((food) => (
-          <Food foodObj={food} key={food.nama} />
-        ))}
-      </ul>
+      {numFoods > 0 && (
+        <ul className="foods">
+          {foods.map((food) => (
+            <Food foodObj={food} key={food.nama} />
+          ))}
+        </ul>
+      )}
       {/* <Food
         nama="Nasi Goreng"
         deskripsi="Nasi yang digoreng dengan bumbu rempah khas Indonesia"
@@ -69,18 +74,26 @@ function Menu() {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 0;
   const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
 
-  if (hour < openHour || hour > closeHour) {
-    alert("Maaf kita tutup");
-  } else {
-    alert("Yes kita buka");
-  }
+  // if (hour < openHour || hour > closeHour) {
+  //   alert("Maaf kita tutup");
+  // } else {
+  //   alert("Yes kita buka");
+  // }
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. Warteg Mang Udin.
+      {isOpen && (
+        <div className="order">
+          <p>
+            Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
