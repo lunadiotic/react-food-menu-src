@@ -92,14 +92,13 @@ function CloseOrder({ openHour, closeHour }) {
 function Food(props) {
   const { nama, deskripsi, harga, foto, stok } = props.foodObj;
 
-  if (!stok) return null;
   return (
-    <li className="food">
+    <li className={`food ${!stok ? "sold-out" : ""}`}>
       <img src={foto} alt={nama} width={200} height={140} />
       <div>
         <h3>{nama}</h3>
         <p>{deskripsi}</p>
-        <span>Rp{harga}</span>
+        <span>{stok ? `Rp${harga}` : "Habis"}</span>
       </div>
     </li>
   );
