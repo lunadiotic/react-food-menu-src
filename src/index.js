@@ -28,7 +28,6 @@ function Header() {
 
 function Menu() {
   const foods = data;
-  // const foods = [];
   const numFoods = foods.length;
   return (
     <main className="menu">
@@ -42,20 +41,6 @@ function Menu() {
       ) : (
         <p>Kosong gan, besok dateng lagi yak!</p>
       )}
-      {/* <Food
-        nama="Nasi Goreng"
-        deskripsi="Nasi yang digoreng dengan bumbu rempah khas Indonesia"
-        harga={25000}
-        foto="food/nasi-goreng.jpg"
-        stok={Math.random() >= 0.5 ? true : false}
-      />
-      <Food
-        nama="Sate Ayam"
-        deskripsi="Potongan daging ayam yang ditusuk dan dibakar, disajikan dengan bumbu kacang"
-        harga={15000}
-        foto="food/sate-ayam.jpg"
-        stok={Math.random() >= 0.5 ? true : false}
-      /> */}
     </main>
   );
 }
@@ -69,7 +54,7 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <OpenOrder closeHour />
+        <OpenOrder closeHour={closeHour} />
       ) : (
         <CloseOrder closeHour={closeHour} openHour={openHour} />
       )}
@@ -77,41 +62,37 @@ function Footer() {
   );
 }
 
-function OpenOrder(props) {
+function OpenOrder({ closeHour }) {
   return (
     <div className="order">
       <p>
-        Kami siap melayani sampai jam tutup {props.closeHour}:00 atau pesan
-        online
+        Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
       </p>
       <button className="btn">Order</button>
     </div>
   );
 }
 
-function CloseOrder(props) {
+function CloseOrder({ openHour, closeHour }) {
   return (
     <p>
-      Maaf gan masih tutup. Coba dateng lagi sekitar jam {props.openHour}-
-      {props.closeHour} ya.
+      Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-{closeHour}{" "}
+      ya.
     </p>
   );
 }
 
 function Food(props) {
-  if (!props.foodObj.stok) return null;
+  const { nama, deskripsi, harga, foto, stok } = props.foodObj;
+
+  if (!stok) return null;
   return (
     <li className="food">
-      <img
-        src={props.foodObj.foto}
-        alt={props.foodObj.nama}
-        width={200}
-        height={140}
-      />
+      <img src={foto} alt={nama} width={200} height={140} />
       <div>
-        <h3>{props.foodObj.nama}</h3>
-        <p>{props.foodObj.deskripsi}</p>
-        <span>Rp{props.foodObj.harga}</span>
+        <h3>{nama}</h3>
+        <p>{deskripsi}</p>
+        <span>Rp{harga}</span>
       </div>
     </li>
   );
