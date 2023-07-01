@@ -17,25 +17,11 @@ function App() {
 // child component ditulis di bawah parent component
 // Tidak boleh di bawahnya
 function Header() {
-  // const style = {
-  //   color: "red",
-  //   fontSize: "48px",
-  //   textTransform: "uppercase",
-  // };
   const style = {};
 
   return (
     <header className="header">
-      <h1
-        // style={{
-        //   color: "red",
-        //   fontSize: "32px",
-        //   textTransform: "uppercase",
-        // }}
-        style={style}
-      >
-        Warteg Mang Udin
-      </h1>
+      <h1 style={style}>Warteg Mang Udin</h1>
     </header>
   );
 }
@@ -76,51 +62,40 @@ function Menu() {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 16;
+  const openHour = 10;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
 
-  // if (hour < openHour || hour > closeHour) {
-  //   alert("Maaf kita tutup");
-  // } else {
-  //   alert("Yes kita buka");
-  // }
+  return (
+    <footer className="footer">
+      {isOpen ? (
+        <OpenOrder closeHour />
+      ) : (
+        <CloseOrder closeHour={closeHour} openHour={openHour} />
+      )}
+    </footer>
+  );
+}
 
-  if (isOpen) {
-    return (
-      <div className="order">
-        <p>
-          Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
-        </p>
-        <button className="btn">Order</button>
-      </div>
-    );
-  } else {
-    return (
+function OpenOrder(props) {
+  return (
+    <div className="order">
       <p>
-        Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-
-        {closeHour} ya.
+        Kami siap melayani sampai jam tutup {props.closeHour}:00 atau pesan
+        online
       </p>
-    );
-  }
+      <button className="btn">Order</button>
+    </div>
+  );
+}
 
-  // return (
-  //   <footer className="footer">
-  //     {isOpen ? (
-  //       <div className="order">
-  //         <p>
-  //           Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
-  //         </p>
-  //         <button className="btn">Order</button>
-  //       </div>
-  //     ) : (
-  //       <p>
-  //         Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-
-  //         {closeHour} ya.
-  //       </p>
-  //     )}
-  //   </footer>
-  // );
+function CloseOrder(props) {
+  return (
+    <p>
+      Maaf gan masih tutup. Coba dateng lagi sekitar jam {props.openHour}-
+      {props.closeHour} ya.
+    </p>
+  );
 }
 
 function Food(props) {
