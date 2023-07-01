@@ -47,12 +47,14 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Menu kita</h2>
-      {numFoods > 0 && (
+      {numFoods > 0 ? (
         <ul className="foods">
           {foods.map((food) => (
             <Food foodObj={food} key={food.nama} />
           ))}
         </ul>
+      ) : (
+        <p>Kosong gan, besok dateng lagi yak!</p>
       )}
       {/* <Food
         nama="Nasi Goreng"
@@ -74,7 +76,7 @@ function Menu() {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 0;
+  const openHour = 16;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
 
@@ -86,13 +88,18 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>
             Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
           </p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-
+          {closeHour} ya.
+        </p>
       )}
     </footer>
   );
