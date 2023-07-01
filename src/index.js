@@ -33,11 +33,18 @@ function Menu() {
     <main className="menu">
       <h2>Menu kita</h2>
       {numFoods > 0 ? (
-        <ul className="foods">
-          {foods.map((food) => (
-            <Food foodObj={food} key={food.nama} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Aneka makanan Indonesia yang disajikan oleh warteg mang udin sebagai
+            pemenuhan makanan kesehatan yang diperlukan dalam kehidupan
+            sehari-hari.
+          </p>
+          <ul className="foods">
+            {foods.map((food) => (
+              <Food foodObj={food} key={food.nama} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>Kosong gan, besok dateng lagi yak!</p>
       )}
