@@ -41,8 +41,8 @@ function Header() {
 }
 
 function Menu() {
-  // const foods = data;
-  const foods = [];
+  const foods = data;
+  // const foods = [];
   const numFoods = foods.length;
   return (
     <main className="menu">
@@ -86,26 +86,45 @@ function Footer() {
   //   alert("Yes kita buka");
   // }
 
-  return (
-    <footer className="footer">
-      {isOpen ? (
-        <div className="order">
-          <p>
-            Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
-          </p>
-          <button className="btn">Order</button>
-        </div>
-      ) : (
+  if (isOpen) {
+    return (
+      <div className="order">
         <p>
-          Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-
-          {closeHour} ya.
+          Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
         </p>
-      )}
-    </footer>
-  );
+        <button className="btn">Order</button>
+      </div>
+    );
+  } else {
+    return (
+      <p>
+        Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-
+        {closeHour} ya.
+      </p>
+    );
+  }
+
+  // return (
+  //   <footer className="footer">
+  //     {isOpen ? (
+  //       <div className="order">
+  //         <p>
+  //           Kami siap melayani sampai jam tutup {closeHour}:00 atau pesan online
+  //         </p>
+  //         <button className="btn">Order</button>
+  //       </div>
+  //     ) : (
+  //       <p>
+  //         Maaf gan masih tutup. Coba dateng lagi sekitar jam {openHour}-
+  //         {closeHour} ya.
+  //       </p>
+  //     )}
+  //   </footer>
+  // );
 }
 
 function Food(props) {
+  if (!props.foodObj.stok) return null;
   return (
     <li className="food">
       <img
